@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="Ja">
+<head>
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0, minimum-scale=1, user-scalable=yes,initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <title>バンドパートテスト</title>
+    <script src="https://unpkg.com/vue@2.5.22/dist/vue.js"></script>
+    <link rel="stylesheet" href="./theme.css">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <!--container-->
+<section class="container">
+
+	<!--questionBox-->
+	<div class="questionBox" id="app">
+
+		<!-- transition -->
+		<transition :duration="{ enter: 500, leave: 300 }" enter-active-class="animated zoomIn" leave-active-class="animated zoomOut" mode="out-in">
+
+			<!--qusetionContainer-->
+			<div class="questionContainer" v-if="questionIndex<quiz.questions.length" v-bind:key="questionIndex">
+
+				<header>
+					<h1 class="title is-6">バンドパートテスト</h1>
+					<!--progress-->
+					<div class="progressContainer">
+						<progress class="progress is-info is-small" :value="(questionIndex/quiz.questions.length)*100" max="100">{{(questionIndex/quiz.questions.length)*100}}%</progress>
+					</div>
+					<!--/progress-->
+				</header>
+
+				<!-- quizOptions -->
+            <div id="app" v-cloak>
+
+              <div class="row">
+
+                  <div class="callout">
+
+                    <div v-for="(question, index) in quiz.questions" :key="index" class="questions">
+                      <!-- Hide all questions, show only the one with index === to current question index -->
+                      <div v-show="index === questionIndex">
+                        <h3 class="questionTitle">{{ question.text}}</h3>
+                        <ol>
+                          <!-- for each response of the current question -->
+                         <div class="optionContainer">
+				         <div class="option" v-for="(response, index) in quiz.questions[questionIndex].responses" @click="selectOption(index)" :class="{ 'is-selected': userResponses[questionIndex] == index}" :key="index" v-on:click="next">
+                                   {{ response.text}}
+                          </div>
+                          </div> 
+
+                        </ol>
+                      </div>
+                    </div>
+                  </div>
+                <!-- /quizOptions -->
+
+                </div>
+             </div>
+				<!--quizFooter: navigation and progress-->
+				<footer class="questionFooter">
+
+					<!--pagination-->
+					<nav class="pagination" role="navigation" aria-label="pagination">
+
+					</nav>
+					<!--/pagination-->
+
+				</footer>
+				<!--/quizFooter-->
+
+			</div>
+			<!--/questionContainer-->
+
+			<!--quizCompletedResult-->
+            <div class="quizCompleted" id="app" v-cloak>
+                <h3 class="present">あなたに似合うパートは</h3>
+                
+                
+                <!-- result 1 -->
+                <template v-if="[33, 30, 29, 26, 23].includes(TotalValue())">
+                    <h3 class="presentTitle">ドラム</h3>
+                    <br>
+                    <img src="./assets/resultOne.png" alt="resultOne" width="340px" height="170px"/>
+                    <br>
+                    <div class="letter">
+                       <p>リズム感に優れているあなた、ドラムはいかがでしょうか？チームの中心になって皆を案内する責任感を持っています。
+                       普段どのような性格であって、スティックさえ握ったらすぐノリノリのテンションになる人です。KONA HAWAIIANSで
+                       ドラムを叩きながらテンションUPしませんか？</p>
+                       <br>
+                       <br>
+                        <div class="mt-2 pt-1"></div>
+                        <div class="result-contents">
+                            <div class="mr-2">·</div>
+                            <div>
+                                <p>思ったより単純で行動にすぐ動かす実践力のある人です。</p>
+                            </div>
+                        </div>
+                        <div class="mt-2 pt-1"></div>
+                        <div class="result-contents">
+                            <div class="mr-2">·</div>
+                            <div>
+                                <p>電車の中で音楽を聴くとき、無意識的にテンポを合わせたりする癖があります。</p>
+                            </div>
+                        </div>
+                        <div class="mt-2 pt-1"></div>
+                        <div class="result-contents">
+                            <div class="mr-2">·</div>
+                            <div>
+                                <p>意外と痩せていたり小さい方です。</p>
+                            </div>
+                        </div>
+                        <div class="mt-2 pt-1"></div>
+                        <div class="result-contents">
+                            <div class="mr-2">·</div>
+                            <div>
+                                <p>瞬間的な集中力があります。ずっと同じ楽器を触っているのはそこまで好みではないです。</p>
+                            </div>
+                        </div>
+                        <div class="mt-2 pt-1"></div>
+                        <div class="result-contents">
+                            <div class="mr-2">·</div>
+                            <div>
+                                <p>いつもお金を貯めています。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="share">Twitterに共有</p>
+                    <a id="btnTwitter" class="link-icon twitter" href="javascript:shareTwitterRes1();">Twitter</a>
+                </template>
+                
+                <!-- result 2 -->
+                <template v-if="[17, 14, 12, 11, 10].includes(TotalValue())">
+                <h3 class="presentTitle">ギター</h3>
+                <br>
+                <img src="./assets/resultTwo.png" alt="resultTwo" width="340px" height="170px"/>
+                <br>
+                <div class="letter">
+                  <p>誰よりも音楽に熱情を持っているあなたにはギターが似合います。貯めたお金はすぐ好きなものに課金！
+                  ハマったらずっとそれに集中する根性を持ったあなた、KONA HAWAIIANSでギターをやってみませんか？</p>
+                  <br>
+                  <br>
+                   <div class="mt-2 pt-1"></div>
+                        <div class="result-contents">
+                            <div class="mr-2">·</div>
+                            <div>
+                                <p>目立つことが好きな方ですが、少し複雑な性格を持っている人です。</p>
+                            </div>
+                        </div>
+                        <div class="mt-2 pt-1"></div>
+                        <div class="result-contents">
+                            <div class="mr-2">·</div>
+                            <div>
+                                <p>音楽に関しての意見が強く、方向性があります。</p>
+                            </div>
+                        </div>
+                        <div class="mt-2 pt-1"></div>
+                        <div class="result-contents">
+                            <div class="mr-2">·</div>
+                            <div>
+                                <p>音楽について深く興味を持っている人が多くて作曲などを担当する場合があります。</p>
+                            </div>
+                        </div>
+                        <div class="mt-2 pt-1"></div>
+                        <div class="result-contents">
+                            <div class="mr-2">·</div>
+                            <div>
+                                <p>いつどの時も楽器を触っているのが好きな方です。</p>
+                            </div>
+                        </div>
+                </div>
+                <p class="share">Twitterに共有</p>
+                <a id="btnTwitter" class="link-icon twitter" href="javascript:shareTwitterRes2();">Twitter</a>
+                </template>
+                
+                <!-- result 3 -->
+                <template v-if="[32, 24, 22, 20, 18].includes(TotalValue())">
+                <h3 class="presentTitle">ボーカル</h3>
+                <br>
+                <img src="./assets/resultThree.png" alt="resultThree" width="340px" height="170px"/>
+                <br>
+                <div class="letter">
+                   <p>マイクの前ではエネルギー満々になるあなた、ボーカルはどうですか？他人よりも人の前に立つことにそこまで抵抗感がない人です。
+                   そのような勇気こそボーカルの才能！舞台の真ん中で自由に動きながら客席を魅了させてみませんか？KONA HAWAIIANSがあなたの声を待っています！</p>
+                   <br>
+                   <br>
+                    <div class="mt-2 pt-1"></div>
+                        <div class="result-contents">
+                            <div class="mr-2">·</div>
+                            <div>
+                                <p>人と集まっているとき，雰囲気を作っていく方です。</p>
+                            </div>
+                        </div>
+                        <div class="mt-2 pt-1"></div>
+                        <div class="result-contents">
+                            <div class="mr-2">·</div>
+                            <div>
+                                <p>新しいことに対して開放的で、すぐ挑戦します。</p>
+                            </div>
+                        </div>
+                        <div class="mt-2 pt-1"></div>
+                        <div class="result-contents">
+                            <div class="mr-2">·</div>
+                            <div>
+                                <p>自分の好みが結構定まっています。</p>
+                            </div>
+                        </div>
+                        <div class="mt-2 pt-1"></div>
+                        <div class="result-contents">
+                            <div class="mr-2">·</div>
+                            <div>
+                                <p>自信のある分野なら躊躇なく進んでいきます。</p>
+                            </div>
+                        </div>
+                </div>
+                <p class="share">Twitterに共有</p>
+                <a id="btnTwitter" class="link-icon twitter" href="javascript:shareTwitterRes3();">Twitter</a>
+                </template>
+                
+                <!-- result 4 -->
+                <template v-if="[34, 31, 28, 27, 25].includes(TotalValue())">
+                <h3 class="presentTitle">ベース</h3>
+                <br>
+                <img src="./assets/resultFour.png" alt="resultFour" width="340px" height="170px"/>
+                <br>
+                <div class="letter">
+                  <p>目立たないところでいつも基盤になっているあなたにはベースが似合います。人と人を結ぶように音とリズムを結んでいきます。
+                  ベースのあなたがいるからこそバンドが調和になれます。魅力的な低い音は格好良さの窮まり！KONA HAWAIIANSのベーシストたちがあなたを待ってますよ！</p>
+                  <br>
+                  <br>
+                   <div class="mt-2 pt-1"></div>
+                        <div class="result-contents">
+                            <div class="mr-2">·</div>
+                            <div>
+                                <p>リーダーシップがある人です。</p>
+                            </div>
+                        </div>
+                        <div class="mt-2 pt-1"></div>
+                        <div class="result-contents">
+                            <div class="mr-2">·</div>
+                            <div>
+                                <p>人からの話を聞いたり相談することが上手い方です。また、どんな話でもさりげなく聞いてくれます。</p>
+                            </div>
+                        </div>
+                        <div class="mt-2 pt-1"></div>
+                        <div class="result-contents">
+                            <div class="mr-2">·</div>
+                            <div>
+                                <p>落ち着いていて、テンションの変化があまり目立たないです。</p>
+                            </div>
+                        </div>
+                        <div class="mt-2 pt-1"></div>
+                        <div class="result-contents">
+                            <div class="mr-2">·</div>
+                            <div>
+                                <p>少しぶっ飛んでるところがあって、独特な世界観を持っています。</p>
+                            </div>
+                        </div>
+                </div>
+                <p class="share">Twitterに共有</p>
+                <a id="btnTwitter" class="link-icon twitter" href="javascript:shareTwitterRes4();">Twitter</a>
+                </template>
+                
+                <!-- result 5 -->
+                <template v-if="[21, 19, 16, 15, 13].includes(TotalValue())">
+                <h3 class="presentTitle">キーボード</h3>
+                <br>
+                <img src="./assets/resultFive.png" alt="resultFive" width="340px" height="170px"/>
+                <br>
+                <div class="letter">
+                   <p>音に特に敏感なあなた、キーボディストになってみませんか？普通のピアノの音からストリングス、シンセサイザーまで！
+                   キーボードが生み出せる音は無限です。曲のクオリティを更に上げてくれる芸術本能、KONA HAWAIIANSで発散しましょう！</p>
+                   <br>
+                   <br>
+                    <div class="mt-2 pt-1"></div>
+                        <div class="result-contents">
+                            <div class="mr-2">·</div>
+                            <div>
+                                <p>曲を聴いたり演奏するときには集中しがちです。</p>
+                            </div>
+                        </div>
+                        <div class="mt-2 pt-1"></div>
+                        <div class="result-contents">
+                            <div class="mr-2">·</div>
+                            <div>
+                                <p>好きなこと以外にはあまり興味がないです。逆に言うと、好きなことには誰よりも詳しい自信があります。</p>
+                            </div>
+                        </div>
+                        <div class="mt-2 pt-1"></div>
+                        <div class="result-contents">
+                            <div class="mr-2">·</div>
+                            <div>
+                                <p>自分だけの世界があって、考え事が多い方です。</p>
+                            </div>
+                        </div>
+                        <div class="mt-2 pt-1"></div>
+                        <div class="result-contents">
+                            <div class="mr-2">·</div>
+                            <div>
+                                <p>自分の実力に対する確信がないときに一番ストレスが溜まります。</p>
+                            </div>
+                        </div>
+                </div>
+                <p class="share">Twitterに共有</p>
+                <a id="btnTwitter" class="link-icon twitter" href="javascript:shareTwitterRes5();">Twitter</a>                
+                </template>
+                
+                
+				<p></p>
+				<a class="button retry" href="index.html">もう一度やる</a>
+				<br>
+				<br>
+				<br>
+				<!--/resultTitleBlock-->
+            </div>
+			<!--/quizCompetedResult-->
+
+		</transition>
+
+	</div>
+	<!--/questionBox-->
+
+</section>
+<!--/container-->
+<script type="text/javascript" src="script.js"></script>
+<script type="text/javascript" src="sharescript.js"></script>
+<script>
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,367 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700");
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+Antique:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Zen+Kurenaido&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap');
+
+/* index */
+.headOne {
+    display: block;
+    font-family: 'Zen Maru Gothic', sans-serif;
+    text-align: center;
+    font-size: 2.5em;
+    color: #0E98F4;
+    height: 100%;
+}
+
+.from {
+    display: block;
+    font-family: "Zen Kurenaido", sans-serif;
+    text-align: center;
+    font-size: 2.5em;
+    color: #fff;
+}
+
+body {
+    font-family: "Kiwi Maru", sans-serif;
+    font-size: 14px;
+    height: 100%;
+    background: linear-gradient(180deg, #92AEDB 0%, #E2BAB5 100%);
+    background-attachment: fixed;
+    /* mocking native UI */
+    cursor: default !important;
+    /* remove text selection cursor */
+    user-select: none;
+    /* remove text selection */
+    user-drag: none;
+    /* disbale element dragging */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.questionTitle {
+    font-family: "Kiwi Maru";
+    text-align: center;
+    font-size: 1.7em;
+}
+
+.title,
+.subtitle {
+    font-family: 'Zen Maru Gothic', sans-serif;
+    font-weight: normal;
+    font-size: 2em;
+    min-height: 100%;
+}
+
+.animated {
+    transition-duration: 0.15s;
+}
+
+.container {
+    display: flex;
+    margin: 0 0.5rem;
+    min-height: 100%;
+}
+
+.questionBox {
+    max-width: 100%;
+    width: 100%;
+    min-height: 100%;
+    background: linear-gradient(180deg, #92AEDB 0%, #E2BAB5 100%);
+    background-attachment: fixed;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    overflow: scroll;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+.questionBox::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+}
+
+.questionBox header {
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.questionBox header h1 {
+    font-weight: bold;
+    margin-bottom: 1rem !important;
+}
+
+.questionBox header .progressContainer {
+    width: 60%;
+    margin: 0 auto;
+}
+
+.questionBox header .progressContainer > progress {
+    margin: 0;
+    border-radius: 5rem;
+    overflow: hidden;
+    border: none;
+    color: linear-gradient(180deg, #92AEDB 0%, #E2BAB5 100%);
+}
+
+.questionBox header .progressContainer > progress::-moz-progress-bar {
+    background: linear-gradient(180deg, #92AEDB 0%, #E2BAB5 100%);
+    background-attachment: fixed;
+}
+
+.questionBox header .progressContainer > progress::-webkit-progress-value {
+    background: linear-gradient(180deg, #92AEDB 0%, #E2BAB5 100%);
+    background-attachment: fixed;
+}
+
+.questionBox header .progressContainer > p {
+    margin: 0;
+}
+
+.questionBox .titleContainer {
+    text-align: center;
+    margin: 0 auto;
+    padding: 1.5rem;
+}
+
+.questionBox .quizForm {
+    display: block;
+    white-space: normal;
+    height: 100%;
+    width: 100%;
+}
+
+.questionBox .quizForm .quizFormContainer {
+    height: 100%;
+    margin: 15px 18px;
+}
+
+.questionBox .quizForm .quizFormContainer .field-label {
+    text-align: left;
+    margin-bottom: 0.5rem;
+}
+
+.questionBox .quizCompleted {
+    width: 100%;
+    padding: 1rem;
+    text-align: center;
+    max-height: 50%;
+}
+
+.questionBox .questionContainer {
+    white-space: normal;
+    height: 100%;
+    width: 100%;
+}
+
+.questionBox .questionContainer .optionContainer {
+    margin-top: 12px;
+    flex-grow: 1;
+    margin-right: 30px;
+    margin-left: 0;
+}
+
+.questionBox .questionContainer .optionContainer .option {
+    border-radius: 290486px;
+    padding: 9px 18px;
+    margin: 0 18px;
+    margin-bottom: 12px;
+    transition: 0.3s;
+    cursor: pointer;
+    background-color: #fff;
+    color: rgba(0, 0, 0, 0.85);
+    border: transparent 1px solid;
+    font-family: "Zen Kaku Gothic Antique";
+}
+
+.questionBox .questionContainer .optionContainer .option.is-selected {
+    border-color: rgba(0, 0, 0, 0.25);
+    background-color: white;
+}
+
+.questionBox .questionContainer .optionContainer .option:hover {
+    background-color: #E2BAB5;
+}
+
+.questionBox .questionContainer .optionContainer .option:active {
+    transform: scaleX(0.9);
+}
+
+.questionBox .questionContainer .questionFooter {
+    width: 100%;
+    align-self: flex-end;
+}
+
+.questionBox .questionContainer .questionFooter .pagination {
+    margin: 15px 25px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: space-between;
+}
+
+.button {
+    padding: 0.5rem 1rem;
+    border-radius: 5rem;
+    margin-left: 0;
+    transition: 0.3s;
+    font-family: "Zen Kaku Gothic Antique";
+    flex-grow: 1;
+    background: #fff;
+    text-decoration: none;
+    margin-top: 20px;
+}
+
+.button:hover {
+    cursor: pointer;
+    background: #E2BAB5;
+    text-decoration: none;
+}
+
+.button.is-active {
+    background: #92AEDB;
+    color: white;
+    border-color: transparent;
+}
+
+.button.is-active:hover {
+    background: #E2BAB5;
+}
+
+/* resultContainer */
+
+.present {
+    font-family: 'Zen Maru Gothic', sans-serif;
+    text-align: center;
+    font-size: 1.5em;
+    color: #fff;
+    min-height: 100%;
+}
+
+.presentTitle {
+    font-family: 'Zen Maru Gothic', sans-serif;
+    text-align: center;
+    font-size: 2em;
+    color: #0E98F4;
+    
+}
+
+.letterTitle {
+    font-family: 'Zen Maru Gothic', sans-serif;
+    text-align: center;
+    font-size: 1.8em;
+    color: #fff;
+}
+
+.letter {
+    font-family: "Kiwi Maru", sans-serif;
+    text-align: center;
+    font-size: 16px;
+    color: #fff;
+    
+}
+
+.share {
+    font-family: 'Zen Maru Gothic', sans-serif;
+    text-align: center;
+    font-size: 1.2em;
+    color: #fff;
+}
+
+/* */
+/* Twitter Sharing */
+.resp-sharing-button__link,
+.resp-sharing-button__icon {
+  display: inline-block
+}
+
+.resp-sharing-button__link {
+  text-decoration: none;
+  color: #fff;
+  margin: 0.5em
+}
+
+.resp-sharing-button {
+  border-radius: 5px;
+  transition: 25ms ease-out;
+  padding: 0.5em 0.75em;
+  font-family: Helvetica Neue,Helvetica,Arial,sans-serif
+}
+
+.resp-sharing-button__icon svg {
+  width: 1em;
+  height: 1em;
+  margin-right: 0.4em;
+  vertical-align: top
+}
+
+.resp-sharing-button--small svg {
+  margin: 0;
+  vertical-align: middle
+}
+
+/* Non solid icons get a stroke */
+.resp-sharing-button__icon {
+  stroke: #fff;
+  fill: none
+}
+
+/* Solid icons get a fill */
+.resp-sharing-button__icon--solid,
+.resp-sharing-button__icon--solidcircle {
+  fill: #fff;
+  stroke: none
+}
+
+.resp-sharing-button--twitter {
+  background-color: #55acee;
+}
+
+.resp-sharing-button--twitter:hover {
+  background-color: #2795e9;
+  cursor: pointer;
+}
+
+.resp-sharing-button--twitter {
+  background-color: #55acee;
+  border-color: #55acee;
+}
+
+.resp-sharing-button--twitter:hover,
+.resp-sharing-button--twitter:active {
+  background-color: #2795e9;
+  border-color: #2795e9;
+}
+
+@media screen and (min-width: 769px) {
+    .questionBox {
+        align-items: center;
+        justify-content: center;
+        max-width: 30rem;
+        width: 30rem;
+        min-height: 30rem;
+    }
+    .questionBox .questionContainer {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .sidebar {
+        height: auto !important;
+        border-radius: 6px 6px 0px 0px;
+    }
+    .questionBox {
+        align-items: center;
+        justify-content: center;
+        max-width: 320px;
+        position: relative;
+    }
+}
+}
